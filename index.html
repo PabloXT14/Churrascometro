@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbecue Meter</title>
+    <!-- CSS Styling -->
+    <link type="text/css" rel="stylesheet" href="./css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Icon Page -->
+    <link rel="icon" href="./images/barbecue.png">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Churrascômetro</h1>
+        <input id="adults" name="adults" type="number" placeholder="Adultos">
+        <input id="children" name="children" type="number" placeholder="Crianças">
+        <input id="duration" name="duration" type="number" placeholder="Duração(h)">
+        <button onclick="calculateAmounts()">Calcular</button>
+
+        <h2>Portion Result</h2>
+        <div class="result">
+            <!-- <p>✔ 10kg de carne </p>
+            <p>✔ 5 latas de cerveja</p>
+            <p>✔ 2garrafas de 2L de refrigerante</p> -->
+        </div>
+    </div>
+    
+    <script src="./scripts/script.js"></script>
+</body>
+</html>
