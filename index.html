@@ -18,16 +18,75 @@
 
     <div class="container">
         <h1 class="title">Churrascômetro</h1>
-        <input id="adults" name="adults" type="number" placeholder="Adultos">
-        <input id="children" name="children" type="number" placeholder="Crianças">
-        <input id="duration" name="duration" type="number" placeholder="Duração(h)">
+
+        <div class="option people">
+            <h2>Número de Pessoas</h2>
+            <div class="inputField">
+                <input id="adults" name="adults" type="number" placeholder="Adultos">
+                <input id="children" name="children" type="number" placeholder="Crianças">
+            </div>
+        </div>
+
+        <div class="option meat">
+            <h2>Tipos de Carne</h2>
+            <div class="inputField">
+                <!-- Dados Inseridos através do Script -->
+                <!-- <div class="contentBox">
+                    <input type="checkbox" id="meat1" name="meat1" value="Alcatra">
+                    <label for="meat1">Alcatra</label>
+                </div>
+                <div class="contentBox">
+                    <input type="checkbox" id="meat2" name="meat2" value="Picanha">
+                    <label for="meat2">Picanha</label>
+                </div> -->
+                
+            </div>
+        </div>
+
+        <div class="option drink">
+            <h2>Bebidas</h2>
+            <div class="inputField">
+                <!-- Dados Inseridos através do Script -->
+                <!-- <div class="contentBox">
+                    <input type="checkbox" id="drink1" name="drink1" value="Cerveja">
+                    <label for="drink1">Cerveja</label>
+                </div>
+                <div class="contentBox">
+                    <input type="checkbox" id="drink2" name="drink2" value="Refri">
+                    <label for="drink2">Refrigerante</label>
+                </div>
+            </div> -->
+            
+        </div>
+
+        <div class="option">
+            <h2>Duração da Festa</h2>
+            <input id="duration" name="duration" type="number" placeholder="Duração(h)">
+        </div>
+        
+
         <button onclick="calculateAmounts()">Calcular</button>
 
         <h2>Portion Result</h2>
         <div class="result">
-            <!-- <p>✔ 10kg de carne </p>
-            <p>✔ 5 latas de cerveja</p>
-            <p>✔ 2garrafas de 2L de refrigerante</p> -->
+            <div class="boxMeats">
+                <h2>Carnes</h2>
+                <div class="resultLines">
+                    <p>Alcatra <span class="qtn">10kg</span></p>
+                    <p>Alcatra <span class="qtn">10kg</span></p>
+                    <p class="total">TOTAL <span class="qtnTotal">20kg</span></p>
+                </div>
+            </div>
+
+            <div class="boxDrinks">
+                <h2>Bebidas</h2>
+                <div class="resultLines">
+                    <p>Cerveja <span class="qtn">36 Latas (350ml)</span></p>
+                    <p>Refrigerante <span class="qtn">2 garrafas de 2L</span></p>
+                </div>
+                
+                
+            </div>
         </div>
     </div>
     

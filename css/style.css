@@ -15,7 +15,7 @@ body {
 
 /* ========== Barbecue Meter Styling ========== */
 .container {
-    max-width: 400px;
+    max-width: 500px;
     margin: 70px 0;
     background-color: #FFF;
     padding: 20px;
@@ -38,6 +38,107 @@ body {
     border-radius: 3px;
     font-size: 1.04em;
 }
+
+.container .option {
+    margin-bottom: 20px;
+}
+
+.container .option h2 {
+    margin-bottom: 7px;
+}
+
+/* ===== Option People Styling ===== */
+.container .option.people .inputField{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+}
+
+/* ===== Option Meat and Drink Styling ===== */
+.container .option.meat .inputField, .container .option.drink .inputField {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center auto;
+}
+
+.container .option.meat .inputField .contentBox, 
+.container .option.drink .inputField .contentBox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.option.meat .inputField .contentBox input[type="checkbox"],
+.option.drink .inputField .contentBox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.option.meat .inputField .contentBox input[type="checkbox"]::before,
+.option.option.drink .inputField .contentBox input[type="checkbox"]::before {
+    content: "✔";
+    color: #FFF;
+    font-size: 17px;
+    font-weight: 500;
+    display: none;
+}
+
+.option.meat .inputField .contentBox input[type="checkbox"]:checked,
+.option.option.drink .inputField .contentBox input[type="checkbox"]:checked {
+    background: #8E49E8;
+    border: none;
+}
+
+.option.meat .inputField .contentBox input[type="checkbox"]:checked::before,
+.option.drink .inputField .contentBox input[type="checkbox"]:checked::before {
+    display: block;
+}
+
+.option.meat .inputField .contentBox label,
+.option.drink .inputField .contentBox label{
+    margin-left: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+
+/* ===== result Styling ===== */
+.result .resultLines p {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    font-size: 17px;
+}
+
+.result .resultLines p:nth-child(1) {
+    border-top: 1px solid #ccc;
+}
+
+.result .resultLines p:last-child {
+    border: none;
+}
+
+.result .resultLines p.total {
+    color: #6e3bb1;
+    font-weight: bold;
+}
+
+.result .resultLines p span {
+    font-weight: bold;
+}
+
+
+
+/* ===== Another Stylings ===== */
 
 .container button {
     width: 100%;
