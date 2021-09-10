@@ -15,7 +15,7 @@
 
 
 
-//Pré carregamento da tela
+/* ===== Pré carregamento da tela ===== */
 let carnes = ["Alcatra", "Picanha", "Pernil", "Picanha Suína", "Coxinha de Frango", "Asinha de Frango", "Linguiça p/ churrasco", "Linguiça Toscana"]
 
 let drinks = ["Cerveja", "Refrigerante", "Suco", "Água", "Cachaça", "Vodka"]
@@ -24,18 +24,16 @@ const boxCarners  = document.querySelector(".option.meat .inputField")
 const boxDrinks = document.querySelector(".option.drink .inputField")
 
 window.onload = ()=> {
-    let idCarne = 0;
     let idDrink = 0;
 
-    for(let carne of carnes) {
+    carnes.forEach((elem, index)=> {
         boxCarners.innerHTML += `
         <div class="contentBox">
-            <input type="checkbox" id="meat${idCarne}" name="meat${idCarne}" value="${carne}">
-            <label for="meat${idCarne}">${carne}</label>
+            <input type="checkbox" id="meat${index}" name="meat${index}" value="${elem}">
+            <label for="meat${index}">${elem}</label>
         </div>
         `
-        idCarne++;
-    }
+    });
 
     for(let drink of drinks) {
         boxDrinks.innerHTML += `
@@ -48,7 +46,7 @@ window.onload = ()=> {
     }
 }
 
-// Funções de calculo das porções 
+/* ===== Calculo das porções ===== */
 const amountAdults = document.querySelector("#adults")
 const amountChildren = document.querySelector("#children")
 const inputDuration = document.querySelector("#duration")
@@ -62,39 +60,55 @@ function calculateAmounts() {
     let children = amountChildren.value;
     let duration = inputDuration.value;
     let inputsCarne = document.querySelectorAll(".option.meat .inputField .contentBox input");
+    let inputsDrink = document.querySelectorAll(".option.drink .inputField .contentBox input");
     
     
-    let qtnMeat = ""
+    // Calculando qtn de carne
+    let lineQtnMeat = ""
     let totalMeat = 0;
     inputsCarne.forEach((elem)=> {
         if(elem.checked) {
             let qtn = amountMeatPP(duration, elem.value) * adults + (amountMeatPP(duration, elem.value) / 2 * children)
-            totalMeat += qtn
+            totalMeat += Math.ceil(qtn/1000)
 
-            qtnMeat += `
-                <p>${elem.value} <span class="qtn">${qtn/1000}kg</span></p>
+            lineQtnMeat += `
+                <p>${elem.value} <span class="qtn">${Math.ceil(qtn/1000)}kg</span></p>
             `    
         }
     })
-    qtnMeat += `<p class="total">TOTAL <span class="qtnTotal">${totalMeat/1000}kg</span></p>`
+    lineQtnMeat += `<p class="total">TOTAL <span class="qtnTotal">${totalMeat}kg</span></p>`
 
+    // Calculando qtn de drinks
+    let lineQtnDrink = ""
+    inputsDrink.forEach((elem)=> {
+        if(elem.checked) {
+            let qtn = 0;
+            if(elem.value != "Cerveja" && elem.value != "Cachaça" && elem.value != "Vodka") {
+                qtn = amountDrinkPP(duration, elem.value) * adults + (amountDrinkPP(duration, elem.value) / 2 * children)
+            } else {
+                qtn = amountDrinkPP(duration, elem.value) * adults
+            }
+            lineQtnDrink += `
+                <p>${elem.value}<span class="qtn">${convertAmountDrink(qtn, elem.value)}</span></p>
+            `
 
-    let totalBeer = amountBeerPP(duration) * adults 
+        }
+    });
+ 
 
-    let totalDrinks = amountDrinkPP(duration) * adults + (amountDrinkPP(duration) / 2 * children)
-
-
-    // boxResult.innerHTML = `
-    // <p>✔ ${totalMeat/1000}kg de carner</p>
-    // <p>✔ ${Math.ceil(totalBeer/350)} Latas(de 350ml) de cerveja</p>
-    // <p>✔ ${Math.ceil(totalDrinks/2000)} garrafas(de 2L) de refrigerante/água</p>
-    // ` 
-
+    //Inserindo Result na boxResult
     boxResult.innerHTML = `
     <div class="boxMeats">
         <h2>Carnes</h2>
         <div class="resultLines">
-            ${qtnMeat}
+            ${lineQtnMeat}
+        </div>
+    </div>
+
+    <div class="boxDrinks">
+        <h2>Bebidas</h2>
+        <div class="resultLines">
+            ${lineQtnDrink}
         </div>
     </div>
     `
@@ -103,44 +117,90 @@ function calculateAmounts() {
 }
 
 
+//retorna qtn em gramas
 function amountMeatPP(duration, tipoMeat) {
-    if(duration >= 6) {
-        switch(tipoMeat) {
-            case "Alcatra":
-                return 650   
-            break;
-            default:
-                return 0;
-            break;
-        }
-
-    } else {
-        switch(tipoMeat) {
-            case "Alcatra":
-                return 400   
-            break;
-            case "Pernil":
-                return 500   
-            break;
-            default:
-                return 0;
-            break;
-        }
+    switch(tipoMeat) {
+        case "Alcatra":
+            return (duration >= 6) ? 650 : 400
+        break;
+        case "Picanha":
+            return (duration >= 6) ? 700 : 450
+        break;
+        case "Pernil":
+            return (duration >= 6) ? 550 : 300
+        break;
+        case "Picanha Suína":
+            return (duration >= 6) ? 600 : 350
+        break;
+        case "Coxinha de Frango":
+            return (duration >= 6) ? 650 : 400
+        break;
+        case "Asinha de Frango":
+            return (duration >= 6) ? 700 : 450
+        break;
+        case "Linguiça p/ churrasco":
+            return (duration >= 6) ? 700 : 450
+        break;
+        case "Linguiça Toscana":
+            return (duration >= 6) ? 650 : 400
+        break;
+        default:
+            return 0;
+        break;
     }
 }
 
-function amountBeerPP(duration) {
-    if(duration >= 6) {
-        return 2000
-    } else {
-        return 1200
+"Cerveja", "Refrigerante", "Suco", "Água", "Cachaça", "Vodka"
+//retorna qtn em ml
+function amountDrinkPP(duration, tipoDrink) {
+    
+    switch(tipoDrink) {
+        case "Água":
+            return (duration >= 6) ? 1000 : 500
+        break;
+        case "Cerveja":
+            return (duration >= 6) ? 2000 : 1200
+        break;
+        case "Refrigerante":
+            return (duration >= 6) ? 1500 : 1000
+        break;
+        case "Suco":
+            return (duration >= 6) ? 1000 : 600
+        break;
+        case "Cachaça":
+            return (duration >= 6) ? 200 : 100
+        break;
+        case "Vodka":
+            return (duration >= 6) ? 200 : 100
+        break;
+        default:
+            return 0;
+        break;
     }
 }
 
-function amountDrinkPP(duration) {
-    if(duration >= 6) {
-        return 1500
-    } else {
-        return 1000
+function convertAmountDrink(amount, typeDrink) {
+    switch(typeDrink) {
+        case "Cerveja":
+            return  `${Math.ceil(amount/350)} latas(350ml)`  
+        break;
+        case "Refrigerante":
+            return  `${Math.ceil(amount/2000)} garrafas(2L)`  
+        break;
+        case "Água":
+            return  `${Math.ceil(amount/500)} garrafinhas(500ml)`  
+        break;
+        case "Suco":
+            return  `${Math.ceil(amount/200)} caixinhas(200ml)`  
+        break;
+        case "Cachaça":
+            return  `${Math.ceil(amount/670)} garrafas(670ml)`  
+        break;
+        case "Vodka":
+            return  `${Math.ceil(amount/600)} garrafas(600ml)`  
+        break;
+        default:
+            return 0;
+        break; 
     }
 }
