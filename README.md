@@ -1,7 +1,7 @@
 # Churrascômetro
-- Este é o Projeto Churrascômetro, feito com inspirações do curso [Programador Br](https://programadorbr.com/), mas contando com adversas outras melhorias mecânias/features que adicionei
-- Todo o projeto foi feito apenas com HTML, CSS JavaScript, com o intúito de treinar e aprimorar habilidades em JavaScript, como `functions`,`array methods`, `Object Math`, entre outros recursos do JavaScript que foi utlizado no projeto (veja mais detalhes no arquivo script.js) 
-- E para quem quiser dar uma mexida no projeto e fazer algumas alterações, nele pode-se facilmente implementar/integrar um banco de dados (ex: Firebase, MySQL, ...) para buscar quais opções de pedido o churrascômetro terá (recomendo inserir os dados de opções que virão do banco de dados dentro dos arrays `carnes` e `drinks` presentes no arquivo script.js)
+- Este é o Projeto Churrascômetro, feito com inspirações do curso [Programador Br](https://programadorbr.com/), mas contando com adversas outras mecânicas/features que adicionei
+- Todo o projeto foi feito apenas com HTML, CSS JavaScript, com o intuito de treinar e aprimorar habilidades em JavaScript, como `functions`,`array methods`, `Object Math`, entre outros recursos do JavaScript que foi utlizado no projeto (veja mais detalhes no arquivo script.js) 
+- E para quem quiser dar uma mexida no projeto e fazer algumas alterações nele, pode-se facilmente implementar/integrar um banco de dados (ex: Firebase, MySQL, ...) para buscar quais opções de pedido o churrascômetro terá (recomendo inserir os dados de opções que virão do banco de dados dentro dos arrays `carnes` e `drinks` presentes no arquivo script.js)
 
 ## 📷 Demonstration
 <img src="./images/Demonstration_Churrascometro.gif" alt="Image de Demostração"> 
